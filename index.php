@@ -1,5 +1,10 @@
 <?php
 session_start();
+include_once("conexao.php");
+
+if(!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,32 +14,19 @@ session_start();
         <title>Cadastro de Produtos</title>
     </head>
     </body>
-        <div stile="text-align:center">
-    
         <h1>Cadastrar Produto</h1>
         <?php
         if(isset($_SESSION['msg'])) {
 			echo $_SESSION['msg'];
 			unset($_SESSION['msg']);
 		}
+		$sql = "SELECT * FROM produtos";
+		$resultado = mysqli_query($conn, $sql);
+		echo "ID" . " | " . "Descrição" . " | " . "Unidade" . " | " . "Valor" . " | " . "Cadastrado em" . "<br><hr>";
+		while ($row = mysqli_fetch_assoc($resultado)) {
+			echo $row["id"] . " | " . $row["descricao"] . " | " . $row["unidade"] . " | " . $row["valor"] . " | " . $row["created"] . "<br><hr>";
+		}
+		echo "<a href='cadastro.php'>Cadastrar</a>";
         ?>
-        <form method="POST" action="produtos.php">
-            
-            <label>Descrição: <input type="text" name="descricao"></label><br><br>
-            
-            <label>Unidade: </label>
-            <select name="unidade">
-                <option value="Kg">Kg</option>
-                <option value="Un.">Un.</option>
-                <option value="L">L</option>
-                <option value="mL">mL</option>
-            </select><br><br>
-
-            <label>Valor Unitário: <input type="text" name="valor_unitario"></label><br><br>
-            
-            <input type="submit" value="Cadastrar">
-            <input type="reset" value="Limpar">
-        </form>
-        </div>
     </body>
 </html>

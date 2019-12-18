@@ -1,11 +1,8 @@
 <?php
 
-$servername = "localhost";
-$username = ""; 
-$password = ""; 
-$database = "";
+session_start();
 
-$conn = mysql_connect($servername, $username, $password, $database);
+include_once("conexao.php");
 
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
@@ -13,18 +10,21 @@ if (!$conn) {
 
 $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
 $unidade = filter_input(INPUT_POST, 'unidade', FILTER_SANITIZE_STRING);
-$valor_unitario = filter_input(INPUT_POST,'valor_unitario');
+$valor_unitario = filter_input(INPUT_POST,'valor_unitario', FILTER_SANITIZE_STRING);
 
 //echo "Descrição: $descricao <br>";
 //echo "Unidade: $unidade <br>";
 //echo "Valor unitário: $valor_unitario <br>";
 
-$sql = "INSERT INTO produtos (description, unity, value, created) VALUES ('$descricao', '$unidade', '$valor_unitario', NOW())";
+$sql = "INSERT INTO produtos (descricao, unidade, valor, created) VALUES ('$descricao', '$unidade', '$valor_unitario', NOW())";
+$resultado = mysqli_query($conn, $sql);
 
-if (mysqli_query($conn, $sql)) {
-      echo "New record created successfully";
+if (mysqli_insert_id($conn)) {
+	$_SESSION['msg'] = "<p style='color:green;'>Produto cadastrado com sucesso!</p>";
+    header("Location: cadastro.php");
 } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	$_SESSION['msg'] = "<p style='color:red;'>Produto não pode ser cadastrado!</p>";
+    header("Location: cadastro.php");
 }
 mysqli_close($conn);
 
