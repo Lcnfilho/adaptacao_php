@@ -2,4 +2,5 @@
 adaptação ao PHP
 - Listagem de produtos cadastrados incluida; 
 - tabela sql incluida;
-- tratamento de algúns erros.
+- tratamento de algúns erros;
+- conexão ao banco de dados separada em um novo documento.
