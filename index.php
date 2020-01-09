@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("conexao.php");
 
 if(!$conn) {
@@ -15,6 +16,10 @@ if(!$conn) {
     </body>
         <h1>Cadastrar Produto</h1>
         <?php
+        if(isset($_SESSION['msg'])) {
+			echo $_SESSION['msg'];
+			unset($_SESSION['msg']);
+		}
 		$sql = "SELECT * FROM produtos";
 		$resultado = mysqli_query($conn, $sql);
 		if(mysqli_num_rows($resultado) > 0) {
@@ -24,14 +29,19 @@ if(!$conn) {
 				."<th>Unidade</th>"
 				."<th>Valor</th>"
 				."<th>Criado em</th>"
+				."<th>Modificado em</th>"
 				."</tr>";
 			while ($row = mysqli_fetch_array($resultado)) {
-				echo "<tr><td>" . $row["id"] . "</td><td>" . $row["descricao"] . "</td><td>" . $row["unidade"] . "</td><td>" . $row["valor"] . "</td><td>" . $row["created"] . "</td></tr>";
+				echo "<tr><td>" . $row["id"] . "</td><td>" . $row["descricao"] . "</td><td>" 
+				. $row["unidade"] . "</td><td>" . $row["valor"] . "</td><td>" 
+				. $row["created"] . "</td><td>" . $row["modified"]."</td><td>"
+				. "<a href=editar.php?id=" . $row["id"] . ">Editar</a> / <a href=excluir.php?id=" . $row["id"] . ">Excluir</a></td></tr>";
 			}
 		} else {
 			echo "Nenhum produto cadastrado";
 		}
 		echo "<a href='cadastro.php'>Cadastrar</a><hr>";
+		mysqli_close($conn);
         ?>
     </body>
 </html>
