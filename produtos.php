@@ -15,15 +15,15 @@ $valor_unitario = filter_input(INPUT_POST,'valor_unitario', FILTER_SANITIZE_STRI
 //echo "Descrição: $descricao <br>";
 //echo "Unidade: $unidade <br>";
 //echo "Valor unitário: $valor_unitario <br>";
-$query_select = "SELECT descricao FROM produtos WHERE descricao = '$descricao'";
-$select = mysqli_query($query_select,$conn);
-$array = mysqli_fetch_array($select);
-$descricao_array = $array['descricao'];
+$query_select = "SELECT descricao FROM produtos WHERE descricao = '$descricao' LIMIT 1";
+$select = mysqli_query($conn, $query_select);
+$existe = mysqli_num_rows($select);
+
 if(empty($descricao)) {
 	$_SESSION['msg'] = "<p style='color:red;'>O campo Descrição não pode estar em branco</p>";
 	header("Location: cadastro.php");
 } else {
-	if($descricao_array == $descricao) {
+	if($existe == 1) {
 		$_SESSION['msg'] = "<p style='color:red;'>Produto já cadastrado</p>";
 		header("Location: cadastro.php");
 	} else {
@@ -32,6 +32,9 @@ if(empty($descricao)) {
 			header("Location: cadastro.php");
 		} else if(!is_numeric($valor_unitario)) {
 			$_SESSION['msg'] = "<p style='color:red;'>Valor Unitário inválido: Digite apenas números e ponto para separa-los</p>";
+			header("Location: cadastro.php");
+		} else if($valor_unitario < 0) {
+			$_SESSION['msg'] = "<p style='color:red;'>Valor Unitário inválido</p>";
 			header("Location: cadastro.php");
 		} else {
 			$sql = "INSERT INTO produtos (descricao, unidade, valor, created) VALUES ('$descricao', '$unidade', '$valor_unitario', NOW())";
