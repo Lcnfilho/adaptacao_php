@@ -13,6 +13,10 @@ $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
 $unidade = filter_input(INPUT_POST, 'unidade', FILTER_SANITIZE_STRING);
 $valor_unitario = filter_input(INPUT_POST,'valor_unitario', FILTER_SANITIZE_STRING);
 
+$query_select = "SELECT descricao FROM produtos WHERE descricao = '$descricao' AND id != '$id' LIMIT 1";
+$select = mysqli_query($conn, $query_select);
+$existe = mysqli_num_rows($select);
+
 if(empty($descricao)) {
 	$_SESSION['msg'] = "<p style='color:red;'>O campo Descrição não pode estar em branco</p>";
 	header("Location: editar.php");
