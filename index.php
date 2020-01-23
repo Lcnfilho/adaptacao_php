@@ -11,6 +11,7 @@ if(!$conn) {
 <html lang="pt-br">
     </head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <title>Cadastro de Produtos</title>
     </head>
     </body>
@@ -35,7 +36,7 @@ if(!$conn) {
 				echo "<tr><td>" . $row["id"] . "</td><td>" . $row["descricao"] . "</td><td>" 
 				. $row["unidade"] . "</td><td>" . $row["valor"] . "</td><td>" 
 				. $row["created"] . "</td><td>" . $row["modified"]."</td><td>"
-				. "<a href=editar.php?id=" . $row["id"] . ">Editar</a> / <a href=excluir.php?id=" . $row["id"] . ">Excluir</a></td></tr>";
+				. "<a href=editar.php?id=" . $row["id"] . ">Editar</a> / <a href='excluir.php?id=" . $row["id"] . "'data-confirm='Tem certeza que eseja excluir esse prouto?'>Excluir</a></td></tr>";
 			}
 		} else {
 			echo "Nenhum produto cadastrado";
@@ -43,5 +44,9 @@ if(!$conn) {
 		echo "<a href='cadastro.php'>Cadastrar</a><hr>";
 		mysqli_close($conn);
         ?>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="js/personalizado.js"></script>
     </body>
 </html>
