@@ -36,7 +36,7 @@ if(!$conn) {
 				echo "<tr><td>" . $row["id"] . "</td><td>" . $row["descricao"] . "</td><td>" 
 				. $row["unidade"] . "</td><td>" . $row["valor"] . "</td><td>" 
 				. $row["created"] . "</td><td>" . $row["modified"]."</td><td>"
-				. "<a href=editar.php?id=" . $row["id"] . ">Editar</a> / <a href='excluir.php?id=" . $row["id"] . "'data-confirm='Tem certeza que eseja excluir esse prouto?'>Excluir</a></td></tr>";
+				. "<a href=editar.php?id=" . $row["id"] . ">Editar</a> / <a href='excluir.php?id=" . $row["id"] . "'data-confirm='Tem certeza que deseja excluir esse produto?'>Excluir</a></td></tr>";
 			}
 		} else {
 			echo "Nenhum produto cadastrado";
