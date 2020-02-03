@@ -19,21 +19,21 @@ $existe = mysqli_num_rows($select);
 
 if(empty($descricao)) {
 	$_SESSION['msg'] = "<p style='color:red;'>O campo Descrição não pode estar em branco</p>";
-	header("Location: editar.php");
+	header("Location: editar.php?id=" . $id);
 } else {
 	if($existe == 1) {
 		$_SESSION['msg'] = "<p style='color:red;'>Produto já cadastrado</p>";
-		header("Location: editar.php");
+		header("Location: editar.php?id=" . $id);
 	} else {
 		if(empty($valor_unitario)) {
 			$_SESSION['msg'] = "<p style='color:red;'>O campo Valor não pode estar em branco</p>";
-			header("Location: editar.php");
+			header("Location: editar.php?id=" . $id);
 		} else if(!is_numeric($valor_unitario)) {
 			$_SESSION['msg'] = "<p style='color:red;'>Valor Unitário inválido: Digite apenas números e ponto para separa-los</p>";
-			header("Location: editar.php");
+			header("Location: editar.php?id=" . $id);
 		} else if($valor_unitario < 0) {
 			$_SESSION['msg'] = "<p style='color:red;'>Valor Unitário inválido</p>";
-			header("Location: editar.php");
+			header("Location: editar.php?id=" . $id);
 		} else {
 			$sql = "UPDATE produtos SET descricao='$descricao', unidade='$unidade', valor='$valor_unitario', modified=NOW() WHERE id='$id'";
 			$resultado = mysqli_query($conn, $sql);
@@ -43,7 +43,7 @@ if(empty($descricao)) {
 				header("Location: index.php");
 			} else {
 				$_SESSION['msg'] = "<p style='color:red;'>Produto não pode ser editado</p>";
-				header("Location: editar.php");
+				header("Location: editar.php?id=" . $id);
 			}
 		}
 	}
