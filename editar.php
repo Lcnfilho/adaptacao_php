@@ -28,6 +28,7 @@ $row_produto = mysqli_fetch_array($resultado);
             
             <label>Unidade: </label>
             <select name="unidade">
+				<option value="<?php echo $row_produto["unidade"];?>"><?php echo $row_produto["unidade"];?></option>
                 <option value="Kg">Kg</option>
                 <option value="Un.">Un.</option>
                 <option value="L">L</option>
