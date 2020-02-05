@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 18-Dez-2019 às 03:17
--- Versão do servidor: 5.7.28-0ubuntu0.18.04.4
--- PHP Version: 7.2.24-0ubuntu0.18.04.1
+-- Generation Time: 05-Fev-2020 às 13:27
+-- Versão do servidor: 5.7.29-0ubuntu0.18.04.1
+-- PHP Version: 7.2.24-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,11 +40,12 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `descricao`, `unidade`, `valor`, `created`, `modified`) VALUES
-(1, 'arroz', 'Kg', '10,90', '2019-12-17 17:04:18', NULL),
-(2, 'feijão', 'Kg', '6,90', '2019-12-17 18:22:35', NULL),
-(3, 'macarrão', 'Un.', '3,90', '2019-12-17 18:27:13', NULL),
-(4, 'batata', 'Kg', '2,90', '2019-12-18 02:19:36', NULL),
-(5, 'cenoura', 'Kg', '2,00', '2019-12-18 02:49:24', NULL);
+(1, 'arroz', 'Kg', '10.99', '2019-12-17 17:04:18', '2020-02-03 17:37:31'),
+(2, 'feijÃ£o preto', 'Kg', '6.90', '2019-12-17 18:22:35', '2020-02-05 12:47:44'),
+(3, 'macarrÃ£o', 'Kg', '3.90', '2019-12-17 18:27:13', '2020-02-05 12:47:31'),
+(7, 'arroz integral', 'Kg', '14.00', '2020-01-23 19:12:15', '2020-02-03 17:15:19'),
+(8, 'maracuja', 'Un.', '0.99', '2020-02-03 17:17:03', '2020-02-05 12:46:18'),
+(9, 'leite', 'L', '1.89', '2020-02-05 12:38:10', '2020-02-05 12:49:08');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +65,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
